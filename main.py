@@ -66,18 +66,17 @@ class MainMenu(tk.Menu):
         self.add_cascade(label="Sistema", menu=menu_sistema)
 
 
-
 def main():
-
     db_instance = Database(path='database/database.sqlite')
+    # app_icon = tk.PhotoImage(file='assets/app.png')
 
     root = tk.Tk()
+
+
     root.title = "Factura Electronica"
     root.geometry("800x600")
 
-    main_frame = tk.Frame(root)
-    main_frame.pack(fill=tk.BOTH, expand=True)
-    root.config(menu=MainMenu())
+    root.config(menu=MainMenu(), background='#edeff0')
     root.mainloop()
 
 
