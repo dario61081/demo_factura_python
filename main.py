@@ -3,6 +3,7 @@
 import tkinter as tk
 
 from databases import Database
+from forms import FormCaja, FormSucursal
 
 
 class SucursalWindow(tk.Frame):
@@ -31,22 +32,23 @@ class MainWindow(tk.Frame):
 
 
 def init_sucursales():
-    win = tk.Toplevel()
-    win.title = "Sucursales"
-    win.frame = SucursalWindow(win, None)
-    win.frame.pack(fill=tk.BOTH, expand=True)
+    print("init sucursales")
+    FormSucursal(db=db_instance).show()
 
 
 def init_cajas():
-    pass
+    print("init cajas")
+    FormCaja(db=db_instance).show()
 
 
 def init_timbrados():
-    pass
+    print("init timbrados")
+    # FormTimbrado(db=db_instance).show()
 
 
 def init_facturas():
-    pass
+    print("init facturas")
+    # FormFactura(db=db_instance).show()
 
 
 class MainMenu(tk.Menu):
@@ -67,18 +69,21 @@ class MainMenu(tk.Menu):
 
 
 def main():
-    db_instance = Database(path='database/database.sqlite')
+
     # app_icon = tk.PhotoImage(file='assets/app.png')
 
     root = tk.Tk()
-
-
-    root.title = "Factura Electronica"
+    root.title("Factura Electronica")
     root.geometry("800x600")
+    root.resizable(False, False)
+    root.iconbitmap('assets/app.ico')
+    root.grid_rowconfigure(0, weight=1)
+    root.positionfrom('user')
 
     root.config(menu=MainMenu(), background='#edeff0')
     root.mainloop()
 
 
 if __name__ == '__main__':
+    db_instance = Database(path='database/database.sqlite')
     main()
